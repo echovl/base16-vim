@@ -82,22 +82,22 @@ local hi = highlight
 local M = {}
 
 M.colors = {
-    base00 = "#{{base00}}",
-    base01 = "#{{base01}}",
-    base02 = "#{{base02}}",
-    base03 = "#{{base03}}",
-    base04 = "#{{base04}}",
-    base05 = "#{{base05}}",
-    base06 = "#{{base06}}",
-    base07 = "#{{base07}}",
-    base08 = "#{{base08}}",
-    base09 = "#{{base09}}",
-    base0A = "#{{base0A}}",
-    base0B = "#{{base0B}}",
-    base0C = "#{{base0C}}",
-    base0D = "#{{base0D}}",
-    base0E = "#{{base0E}}",
-    base0F = "#{{base0F}}",
+    base00 = "#{{base00-hex}}",
+    base01 = "#{{base01-hex}}",
+    base02 = "#{{base02-hex}}",
+    base03 = "#{{base03-hex}}",
+    base04 = "#{{base04-hex}}",
+    base05 = "#{{base05-hex}}",
+    base06 = "#{{base06-hex}}",
+    base07 = "#{{base07-hex}}",
+    base08 = "#{{base08-hex}}",
+    base09 = "#{{base09-hex}}",
+    base0A = "#{{base0A-hex}}",
+    base0B = "#{{base0B-hex}}",
+    base0C = "#{{base0C-hex}}",
+    base0D = "#{{base0D-hex}}",
+    base0E = "#{{base0E-hex}}",
+    base0F = "#{{base0F-hex}}",
 }
 
 -- Vim editor colors
@@ -294,15 +294,13 @@ hi.TSDefinition      = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.
 hi.TSDefinitionUsage = { guifg = nil, guibg = nil, gui = 'underline', guisp = M.colors.base04 }
 hi.TSCurrentScope    = { guifg = nil, guibg = nil, gui = 'bold',      guisp = nil }
 
-if M.config.ts_rainbow then
-    hi.rainbowcol1 = { guifg = M.colors.base06 }
-    hi.rainbowcol2 = { guifg = M.colors.base09 }
-    hi.rainbowcol3 = { guifg = M.colors.base0A }
-    hi.rainbowcol4 = { guifg = M.colors.base07 }
-    hi.rainbowcol5 = { guifg = M.colors.base0C }
-    hi.rainbowcol6 = { guifg = M.colors.base0D }
-    hi.rainbowcol7 = { guifg = M.colors.base0E }
-end
+hi.rainbowcol1 = { guifg = M.colors.base06 }
+hi.rainbowcol2 = { guifg = M.colors.base09 }
+hi.rainbowcol3 = { guifg = M.colors.base0A }
+hi.rainbowcol4 = { guifg = M.colors.base07 }
+hi.rainbowcol5 = { guifg = M.colors.base0C }
+hi.rainbowcol6 = { guifg = M.colors.base0D }
+hi.rainbowcol7 = { guifg = M.colors.base0E }
 
 hi.NvimInternalError = { guifg = M.colors.base00, guibg = M.colors.base08, gui = 'none', guisp = nil }
 
@@ -324,51 +322,45 @@ hi.User9 = { guifg = M.colors.base00, guibg = M.colors.base02, gui = 'none', gui
 
 hi.TreesitterContext = { guifg = nil, guibg = M.colors.base01, gui = 'italic', guisp = nil }
 
-if M.config.telescope then
-    if hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and hex_re:match_str(M.colors.base02) then
-        local darkerbg = darken(M.colors.base00, 0.1)
-        local darkercursorline = darken(M.colors.base01, 0.1)
-        local darkerstatusline = darken(M.colors.base02, 0.1)
-        hi.TelescopeBorder       = { guifg = darkerbg,         guibg = darkerbg,         gui = nil,    guisp = nil }
-        hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil,    guisp = nil }
-        hi.TelescopePromptNormal = { guifg = M.colors.base05,  guibg = darkerstatusline, gui = nil,    guisp = nil }
-        hi.TelescopePromptPrefix = { guifg = M.colors.base08,  guibg = darkerstatusline, gui = nil,    guisp = nil }
-        hi.TelescopeNormal       = { guifg = nil,              guibg = darkerbg,         gui = nil,    guisp = nil }
-        hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = M.colors.base0B,  gui = nil,    guisp = nil }
-        hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = M.colors.base08,  gui = nil,    guisp = nil }
-        hi.TelescopeResultsTitle = { guifg = darkerbg,         guibg = darkerbg,         gui = nil,    guisp = nil }
-        hi.TelescopeSelection    = { guifg = nil,              guibg = darkerstatusline, gui = nil,    guisp = nil }
-        hi.TelescopePreviewLine  = { guifg = nil,              guibg = M.colors.base01,  gui = 'none', guisp = nil }
-    end
+if hex_re:match_str(M.colors.base00) and hex_re:match_str(M.colors.base01) and hex_re:match_str(M.colors.base02) then
+    local darkerbg = darken(M.colors.base00, 0.1)
+    local darkercursorline = darken(M.colors.base01, 0.1)
+    local darkerstatusline = darken(M.colors.base02, 0.1)
+    hi.TelescopeBorder       = { guifg = darkerbg,         guibg = darkerbg,         gui = nil,    guisp = nil }
+    hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil,    guisp = nil }
+    hi.TelescopePromptNormal = { guifg = M.colors.base05,  guibg = darkerstatusline, gui = nil,    guisp = nil }
+    hi.TelescopePromptPrefix = { guifg = M.colors.base08,  guibg = darkerstatusline, gui = nil,    guisp = nil }
+    hi.TelescopeNormal       = { guifg = nil,              guibg = darkerbg,         gui = nil,    guisp = nil }
+    hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = M.colors.base0B,  gui = nil,    guisp = nil }
+    hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = M.colors.base08,  gui = nil,    guisp = nil }
+    hi.TelescopeResultsTitle = { guifg = darkerbg,         guibg = darkerbg,         gui = nil,    guisp = nil }
+    hi.TelescopeSelection    = { guifg = nil,              guibg = darkerstatusline, gui = nil,    guisp = nil }
+    hi.TelescopePreviewLine  = { guifg = nil,              guibg = M.colors.base01,  gui = 'none', guisp = nil }
 end
 
-if M.config.notify then
-    hi.NotifyERRORBorder = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyWARNBorder  = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyINFOBorder  = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyDEBUGBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyTRACEBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyERRORIcon   = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyWARNIcon    = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyINFOIcon    = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyDEBUGIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyTRACEIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyERRORTitle  = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyWARNTitle   = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyINFOTitle   = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyDEBUGTitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyTRACETitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
-    hi.NotifyERRORBody = 'Normal'
-    hi.NotifyWARNBody  = 'Normal'
-    hi.NotifyINFOBody  = 'Normal'
-    hi.NotifyDEBUGBody = 'Normal'
-    hi.NotifyTRACEBody = 'Normal'
-end
+hi.NotifyERRORBorder = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyWARNBorder  = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyINFOBorder  = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyDEBUGBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyTRACEBorder = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyERRORIcon   = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyWARNIcon    = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyINFOIcon    = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyDEBUGIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyTRACEIcon   = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyERRORTitle  = { guifg = M.colors.base08, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyWARNTitle   = { guifg = M.colors.base0E, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyINFOTitle   = { guifg = M.colors.base05, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyDEBUGTitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyTRACETitle  = { guifg = M.colors.base0C, guibg = nil, gui = 'none', guisp = nil }
+hi.NotifyERRORBody = 'Normal'
+hi.NotifyWARNBody  = 'Normal'
+hi.NotifyINFOBody  = 'Normal'
+hi.NotifyDEBUGBody = 'Normal'
+hi.NotifyTRACEBody = 'Normal'
 
-if M.config.indentblankline then
-    hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine' }
-    hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine' }
-end
+hi.IndentBlanklineChar        = { guifg = M.colors.base02, gui = 'nocombine' }
+hi.IndentBlanklineContextChar = { guifg = M.colors.base04, gui = 'nocombine' }
 
 vim.g.terminal_color_0  = M.colors.base00
 vim.g.terminal_color_1  = M.colors.base08
